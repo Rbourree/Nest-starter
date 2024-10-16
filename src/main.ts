@@ -13,9 +13,7 @@ async function bootstrap() {
     .setVersion('1.0')
     .build();
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('doc', app, document, {
-    // jsonDocumentUrl: 'swagger/json',
-  });
+  SwaggerModule.setup('doc', app, document);
 
   await app.listen(process.env.API_PORT);
 }
