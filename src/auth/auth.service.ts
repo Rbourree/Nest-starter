@@ -71,7 +71,7 @@ import {
   
       const payload = { sub: user.id_user, username: `${user.firstname} ${user.lastname}` };
       return {
-        access_token: await this.jwtService.signAsync(payload, { secret: "your.secret" }),
+        access_token: await this.jwtService.signAsync(payload, { secret: process.env.JWT_SECRET }),
       };
     }
   }

@@ -5,17 +5,19 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { SentryGlobalFilter } from "@sentry/nestjs/setup";
 import { APP_FILTER } from "@nestjs/core";
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot(),
     SentryModule.forRoot(),
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: 'user',
-      password: 'password',
-      database: 'db',
+      host: process.env.MYSQL_URL,
+      port: +process.env.MYSQL_PORT,
+      username: process.env.MYSQL_USER,
+      password: process.env.MYSQL_PASSWORD,
+      database: process.env.MYSQL_DATABASE,
       entities: [__dirname + '/**/*.entity.{ts,js}'],
       synchronize: true,
     }),
