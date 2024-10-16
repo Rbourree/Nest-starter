@@ -30,7 +30,9 @@
 
 ```bash
 $ npm install
+$ cp .env.template .env
 ```
+ Edit .env file with your params
 
 ## Compile and run the project
 
@@ -57,6 +59,14 @@ $ npm run test:e2e
 # test coverage
 $ npm run test:cov
 ```
+
+
+## Urls
+
+- API: http://localhost:3000
+- Swagger documentation: http://localhost:3000/doc
+- Sentry dashboard: https://sentry.io/
+
 
 ## Resources
 
