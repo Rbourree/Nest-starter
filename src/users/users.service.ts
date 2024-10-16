@@ -19,14 +19,14 @@ export class UsersService {
 
   private userRepository;
 
-  constructor(private dataSource: DataSource){
+  constructor(private dataSource: DataSource) {
     this.userRepository = this.dataSource.getRepository(UserEntity);
   }
 
-  async findByID(id_user: string){
-    const user = await this.userRepository.findOneBy({id_user});
+  async findByID(id_user: string) {
+    const user = await this.userRepository.findOneBy({ id_user });
 
-    if(!user) throw new HttpException({
+    if (!user) throw new HttpException({
       status: HttpStatus.NOT_FOUND,
       error: 'User not found',
     }, HttpStatus.NOT_FOUND);
@@ -34,27 +34,26 @@ export class UsersService {
     return user;
   }
 
-  async findAll(){
+  async findAll() {
     return await this.userRepository.find();
   }
 
-  async update(id_user: string, data: UpdateUser){
-    let user = await this.userRepository.findOneBy({id_user});
+  async update(id_user: string, data: UpdateUser) {
+    let user = await this.userRepository.findOneBy({ id_user });
 
-    if(!user) throw new HttpException({
+    if (!user) throw new HttpException({
       status: HttpStatus.NOT_FOUND,
       error: 'User not found',
     }, HttpStatus.NOT_FOUND);
 
-    let userUpdate = {...user, ...data}
+    let userUpdate = { ...user, ...data }
     return await this.userRepository.save(userUpdate);
   }
 
-  async delete(id_user: string){
-    let user = await this.userRepository.findOneBy({id_user});
-    console.log(user);
-    
-    if(!user) throw new HttpException({
+  async delete(id_user: string) {
+    let user = await this.userRepository.findOneBy({ id_user });
+
+    if (!user) throw new HttpException({
       status: HttpStatus.NOT_FOUND,
       error: 'User not found',
     }, HttpStatus.NOT_FOUND);
